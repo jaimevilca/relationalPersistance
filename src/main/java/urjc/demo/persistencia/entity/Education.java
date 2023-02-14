@@ -1,4 +1,4 @@
-package urjc.demo.persistencia;
+package urjc.demo.persistencia.entity;
 
 public enum Education {
     DEGREE,

@@ -1,4 +1,4 @@
-package urjc.demo.persistencia;
+package urjc.demo.persistencia.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,15 +15,16 @@ public class Plane {
     private String registration;
     private String manufacturer;
     private String model;
-    private long flightHours;
+    private int flightHours;
 
     public Plane() {
     }
 
-    public Plane(String registration, String manufacturer, String model) {
+    public Plane(String registration, String manufacturer, String model, int flightHours) {
         this.registration = registration;
         this.manufacturer = manufacturer;
         this.model = model;
+        this.flightHours = flightHours;
     }
 
     public long getId() {
@@ -38,31 +39,31 @@ public class Plane {
         return registration;
     }
 
-    public void setRegistration(String matricula) {
-        this.registration = matricula;
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String fabricante) {
-        this.manufacturer = fabricante;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String modelo) {
-        this.model = modelo;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public long getFlightHours() {
+    public int getFlightHours() {
         return flightHours;
     }
 
-    public void setFlightHours(long horasVuelo) {
-        this.flightHours = horasVuelo;
+    public void setFlightHours(int flightHours) {
+        this.flightHours = flightHours;
     }
 }

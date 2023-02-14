@@ -1,11 +1,11 @@
-package urjc.demo.persistencia;
+package urjc.demo.persistencia.entity;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-public class Overhaul {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -14,7 +14,7 @@ public class Overhaul {
     private Date endDate;
     private int hourSpent;
 
-    @OneToOne
+    @ManyToOne
     private Plane plane;
 
     @ManyToOne
@@ -27,7 +27,18 @@ public class Overhaul {
     @OneToOne
     private Airport airport;
 
-    public Overhaul() {
+    public Review() {
+    }
+
+    public Review(Date startDate, Date endDate, int hourSpent, Plane plane, Mechanic mechanic, String typeRevision, String description, Airport airport) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.hourSpent = hourSpent;
+        this.plane = plane;
+        this.mechanic = mechanic;
+        this.typeRevision = typeRevision;
+        this.description = description;
+        this.airport = airport;
     }
 
     public long getId() {

@@ -1,8 +1,7 @@
-package urjc.demo.persistencia;
+package urjc.demo.persistencia.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,9 +19,18 @@ public class Mechanic {
     private String education;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="mechanic")
-    private List<Overhaul> overhauls;
+    private List<Review> reviews;
 
     public Mechanic() {
+    }
+
+    public Mechanic(String employeeCode, String name, String surnames, String companyName, int yearIncorporation, String education) {
+        this.employeeCode = employeeCode;
+        this.name = name;
+        this.surnames = surnames;
+        this.companyName = companyName;
+        this.yearIncorporation = yearIncorporation;
+        this.education = education;
     }
 
     public long getId() {
@@ -81,11 +89,11 @@ public class Mechanic {
         this.education = education.name();
     }
 
-    public List<Overhaul> getOverhauls() {
-        return overhauls;
+    public List<Review> getOverhauls() {
+        return reviews;
     }
 
-    public void setOverhauls(List<Overhaul> overhauls) {
-        this.overhauls = overhauls;
+    public void setOverhauls(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

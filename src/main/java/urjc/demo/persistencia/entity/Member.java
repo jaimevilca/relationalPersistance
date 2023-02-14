@@ -1,4 +1,4 @@
-package urjc.demo.persistencia;
+package urjc.demo.persistencia.entity;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class CrewMember {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,23 +17,19 @@ public class CrewMember {
     private String position;
     private String company;
 
-    @OneToMany(mappedBy = "crewMember", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<FlightCrewMember> flights = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Flight> flights = new ArrayList<>();
 
-    public CrewMember() {
+    public Member() {
     }
 
-    public CrewMember(String employeeCode, String name, String surname, Position position, String company) {
+    public Member(String employeeCode, String name, String surname, Position position, String company) {
         this.employeeCode = employeeCode;
         this.name = name;
         this.surname = surname;
         this.position = position.name();
         this.company = company;
         this.flights = flights;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public long getId() {
@@ -48,8 +44,8 @@ public class CrewMember {
         return employeeCode;
     }
 
-    public void setEmployeeCode(String codeIATA) {
-        this.employeeCode = codeIATA;
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
     }
 
     public String getName() {
@@ -64,16 +60,16 @@ public class CrewMember {
         return surname;
     }
 
-    public void setSurname(String city) {
-        this.surname = city;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
-        this.position = position.name();
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getCompany() {
@@ -84,11 +80,11 @@ public class CrewMember {
         this.company = company;
     }
 
-    public List<FlightCrewMember> getFlights() {
+    public List<Flight> getFlights() {
         return flights;
     }
 
-    public void setFlights(List<FlightCrewMember> flights) {
+    public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }
 }
